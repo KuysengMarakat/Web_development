@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Exercise1 -->
+    <p>Exercise 1</p>
+    <p id="demo1"></p>
+    <script>
+        function isLeapYear(year) {
+            return (year % 4 == 0 && year % 100 !== 0) || year % 400 == 0;
+        }
+
+        let year = prompt("Enter a year:");
+        console.log(isLeapYear((year)));
+        document.getElementById("demo1").innerHTML = year + (isLeapYear(year) ? " is a leap year." : " is not a leap year.");
+    </script>
+
+
+    <!-- Exercise2 -->
+    <p>Exercise 2</p>
+    <p>List of colors:</p>
+    <p id="demo2"></p>
+    <script>
+        const myColor = ["Red", "Green", "White", "Black"];
+        let text = "";
+        for (let i = 0; i < myColor.length; i++) {
+            text += myColor[i] + "<br>";
+        }
+        document.getElementById("demo2").innerHTML = text;
+    </script>
+
+
+    <!-- Exercise3 -->
+    <p>Exercise 3</p>
+    <p id="demo3"></p>
+    <script>
+        function showTime() {
+            const date = new Date();
+            const time = date.toLocaleTimeString();
+            const getHours = date.getHours();
+            document.getElementById("demo3").innerHTML = time;
+            let greeting;
+            if (getHours < 12) {
+                greeting = "Good morning!";
+            } else if (getHours >= 18) {
+                greeting = "Good evening!";
+            } else {
+                greeting = "Good afternoon!";
+            }
+            document.getElementById("demo3").innerHTML += "<br>" + greeting;
+            console.log(greeting);
+            setTimeout(showTime, 1000);
+        }
+        showTime();
+    </script>
+
+
+
+    <!-- Exercise4 -->
+    <p>Exercise 4</p>
+    <p id="demo4"></p>
+    <script>
+        function caesarEncrypt(plaintext, shift) {
+            const alphabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const alphabetLower = 'abcdefghijklmnopqrstuvwxyz';
+            let ciphertext = '';
+
+            for (let i = 0; i < plaintext.length; i++) {
+                const char = plaintext[i];
+                if (char.match(/[A-Z]/)) {
+                    const index = (alphabetUpper.indexOf(char) + shift) % 26;
+                    ciphertext += alphabetUpper[index];
+                } else if (char.match(/[a-z]/)) {
+                    const index = (alphabetLower.indexOf(char) + shift) % 26;
+                    ciphertext += alphabetLower[index];
+                } else {
+                    ciphertext += char; // Non-alphabetic characters remain
+                }
+            }
+            return ciphertext;
+        }
+
+        const plaintext = prompt("Enter any text: ");
+        const shiftAmount = 3;
+        const encryptedText = caesarEncrypt(plaintext, shiftAmount);
+
+        console.log('Encrypted:', encryptedText);
+        document.getElementById("demo2").textContent = encryptedText;
+    </script>
+
+</body>
+
+</html>
